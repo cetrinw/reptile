@@ -15,7 +15,7 @@ public class GetContent {
         Matcher m = p.matcher(str);
 
         while(m.find()){
-            return m.group();
+            return m.group(1);
         }
         return null;
     }
