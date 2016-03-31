@@ -14,7 +14,7 @@ public class GetContent {
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(str);
 
-        while(m.find()){
+        if(m.find()){
             return m.group(1);
         }
         return null;
