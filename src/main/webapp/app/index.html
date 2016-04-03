@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="UTF-8"/>
+    <title>Cetrin Wang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/__base/flex-layout.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<!-- 3. Display the application -->
+<body>
+
+
+<div layout-fill style="overflow: hidden">
+    <div layout="column" layout-fill>
+        <md-toolbar>
+            <div class="md-toolbar-tools top-toolbar drag">
+                <h2>
+                    <span>爬虫抓取展示</span>
+                </h2>
+                <div flex class="text-center">
+                    <span>{{pageTitle}}</span>
+                </div>
+                <md-button class="md-icon-button no-drag" title="全屏" ng-click="maximize()">
+                    <md-icon>add</md-icon>
+                </md-button>
+                <md-button class="md-icon-button no-drag" title="关闭" ng-click="closeWindow()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <div flex layout="row">
+            <div layout="column" class="cu-navbar">
+                <md-button class="md-icon-button" ng-repeat="btn in menus"
+                           ng-class="{'md-primary' : isActive(btn.route)}" href="#{{btn.route}}">
+                    <md-icon>{{btn.icon}}</md-icon>
+                    <md-tooltip md-direction="right">
+                        {{btn.name}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+            <md-divider></md-divider>
+            <div flex layout="column" style="overflow-y: auto;overflow-x:hidden;position: relative;">
+                <ng-view layout-padding></ng-view>
+                <span flex></span>
+                <md-divider></md-divider>
+                <div class="text-center cu-footer">
+                    版权所有 @cetrinw
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 1. Load libraries -->
+<script src="../node_modules/systemjs/dist/system.js"></script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/angular/angular.js"></script>
+<!-- 2. Configure SystemJS -->
+<script>
+    System.set('jquery', System.newModule({default: jQuery}));
+    System.set('angular', System.newModule({default: angular}));
+    System.config({
+        defaultJSExtensions: true,
+
+        //lib defined
+        map: {
+            'lodash': 'node/lodash/lodash.min',
+            'moment': 'node/moment/moment',
+            'angular-resource': 'node/angular-resource/angular-resource.min',
+            'angular-route': 'node/angular-route/angular-route.min',
+            'angular-material': 'node/angular-material/angular-material.min',
+            'angular-sanitize': 'node/angular-sanitize/angular-sanitize.min',
+            'angular-material-css': 'node/angular-material/angular-material.min.css',
+            'angular-animate': 'node/angular-animate/angular-animate.min',
+            'angular-aria': 'node/angular-aria/angular-aria.min',
+            'angular-messages': 'node/angular-messages/angular-messages.min',
+            'angular-material-icons': 'node/material-design-icons-iconfont/dist/material-design-icons.css',
+            css: 'node/systemjs-plugin-css/css',
+            json: 'node/systemjs-plugin-json/json'
+        },
+        meta: {
+            'angular-material': {
+                deps: [
+                    'angular-aria',
+                    'angular-messages',
+                    'angular-animate',
+                    'angular-material-css!css',
+                    'angular-material-icons!css'
+                ]
+            }
+        },
+        paths: {
+            'node/': '../node_modules/'
+        },
+        packages: {
+            scripts: {
+                map: {
+                    annotation: "scripts/common/annotation",
+                    app: "scripts/common/app",
+                    util: 'scripts/common/util'
+                }
+            }
+        }
+    });
+    System.import('scripts/boot');
+</script>
+</body>
+</html>
