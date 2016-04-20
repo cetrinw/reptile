@@ -1,13 +1,14 @@
 package com.cetrinw.config;
 
+import java.sql.Connection;
+
 /**
  * Created by Cetrin Wang on 2016/4/3.
  * 配置管理类接口
  */
 public interface Configuration {
     /**
-     * 获得抓取URL
-     * @return String URL地址
+     * 获取数据库连接信息
      */
-    String getUrl();
+    Connection getConncection();
 }
