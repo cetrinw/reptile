@@ -40,7 +40,7 @@ public class JsoupTest {
      */
     private void init(){
         try {
-            doc = Jsoup.connect(this.cfg.getUrl()).get();
+            doc = Jsoup.connect("http://neihanshequ.com/").get();
         } catch (IOException e) {
             e.printStackTrace();
         }
