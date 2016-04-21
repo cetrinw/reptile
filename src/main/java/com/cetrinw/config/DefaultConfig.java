@@ -1,11 +1,10 @@
 package com.cetrinw.config;
 
 
+import com.mongodb.Mongo;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -42,23 +41,13 @@ public class DefaultConfig implements Configuration {
     }
 
     /**
-     * 获取数据库连接
-     * @return Connection
+     * 获得Mongodb连接
+     * @return
      */
-    public Connection getConncection() {
-        String driver = properties.getProperty("jdbc.driver");
-        String url = properties.getProperty("jdbc.url");
-        String username = properties.getProperty("jdbc.username");
-        String password = properties.getProperty("jdbc.password");
+    public Mongo getMongo() {
+        String host = properties.getProperty("mongodb.replica.host");
+        int port = Integer.parseInt(properties.getProperty("mongodb.port"));
 
-        try {
-            Class.forName(driver);
-            return DriverManager.getConnection(url,username,password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new Mongo(host,port);
     }
 }

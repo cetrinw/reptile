@@ -1,4 +1,4 @@
-package com.cetrinw.jsoup;
+package com.cetrinw.demo;
 
 import com.cetrinw.config.Configuration;
 import com.cetrinw.config.DefaultConfig;
@@ -9,6 +9,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Cetrin Wang on 2016/3/31.
@@ -49,12 +51,15 @@ public class JsoupTest {
     /**
      * 获取指定HTML内容
      */
-    public void getHTML(){
+    public List<String> getHTML(){
+        List<String> list = new ArrayList<String>();
         assert doc != null;
         Elements es = doc.getElementsByClass("content-wrapper");
         for (Element e : es) {
+            list.add(GetContent.getContent(e.toString()));
             System.out.println(GetContent.getContent(e.toString()));
         }
+        return list;
     }
 
     public static void main(String[] args) {

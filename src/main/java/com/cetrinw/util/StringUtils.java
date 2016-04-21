@@ -7,7 +7,7 @@ import java.util.UUID;
  * 生成UUID
  */
 public class StringUtils {
-    public  static String get(String fg) {
+    public  static String getUUID(String fg) {
         String uuid = UUID.randomUUID().toString().replace("-", "");
         uuid = fg.concat(uuid);
         return uuid.substring(0, 32);
