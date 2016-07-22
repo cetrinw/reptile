@@ -1,5 +1,8 @@
 package com.cetrinw.regEx;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Cetrin Wang on 2016/3/31.
  * 对HTML正文进行过滤
@@ -12,8 +15,20 @@ public class HtmlRegEx {
 
     public static String removeHTMLTag(String str) {
         str = str.replaceAll(regxpForHtml, "");
-        str = str.replaceAll(regxpForHtml, "");
+        str = str.replaceAll(regxpForImgTag, "");
         str = str.replaceAll(regxpForImaTagSrcAttrib, "");
         return str.trim();
+    }
+
+    public static String findRegEx(String text,String regEx){
+
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(text);
+
+        if(m.find()){
+            return m.group();
+        }
+
+        return null;
     }
 }

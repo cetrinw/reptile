@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 public class DefaultConfig implements Configuration {
     private Properties properties;//配置文件
-    private String FILE_NAME = "db.properties";//配置文件路径
+    private static final String FILE_NAME = "db.properties";//配置文件路径
 
     /**
      * 返回单例
